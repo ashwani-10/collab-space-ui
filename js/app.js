@@ -1,6 +1,7 @@
 // js/app.js - Main App Entry
 
 const initApp = async () => {
+
     console.log('initApp started');
     const userEmail = localStorage.getItem('currentUser');
     if (!userEmail) return;

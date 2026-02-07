@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify({ name, email, password })
         });
-        const data = await respose.json();
+        const data = await respose.text();
         console.log('Registration response:', data);
 
         if (respose.ok) {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({ email, otp })
             });
-            const data = await response.json();
+            const data = await response.text();
             console.log('OTP verification response:', data);
 
             if(response.ok){
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                 }
             });
-            const data = await response.json();
+            const data = await response.text();
             console.log('Login OTP response:', data);
 
             if(response.ok){

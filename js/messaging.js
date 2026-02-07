@@ -66,8 +66,18 @@ const STATIC_MESSAGES = {
     ]
 };
 
+    const stompClient = new StompJs.Client({
+        webSocketFactory: () => new SockJS('http://localhost:8080/gs-guide-websocket')
+    });
 
-
+    stompClient.onConnect = (frame) => {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/message', (greeting) => {
+            let data = greeting.body;
+            console.log('Received message:', data);
+        });
+    };
+    stompClient.activate();
 
 
 function initMessaging(feed, textarea, btn, title) {
@@ -166,6 +176,11 @@ function loadChannel(name) {
 function sendMessage() {
     const text = chatTextarea.value.trim();
     if (!text) return;
+
+    stompClient.publish({
+        destination: "/app/hello",
+        body: JSON.stringify({'message': text}),
+    });
 
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
