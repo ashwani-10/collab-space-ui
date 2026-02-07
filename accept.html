@@ -81,7 +81,8 @@
         try {
             const res = await fetch(`http://localhost:8080/accept/invite/${token}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json"
+                }
             });
             const data = await res.text();
 
@@ -112,7 +113,7 @@
     }
 
     function goToApp() {
-        window.location.href = "http://localhost:5500/login.html";
+        window.location.href = "index.html";
     }
 
     function showError(message) {
